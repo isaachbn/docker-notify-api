@@ -19,13 +19,11 @@ RUN apt-get update \
         supervisor \
         locales
 
-# Ensure UTF-8 locale
-RUN sed -i "s/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/" /etc/locale.gen
-ENV LANG       en_US.UTF-8
-ENV LC_ALL     en_US.UTF-8
+RUN sed -i "s/# pt_BR.UTF-8 UTF-8/pt_BR.UTF-8 UTF-8/" /etc/locale.gen
+ENV LANG       pt_BR.UTF-8
+ENV LC_ALL     pt_BR.UTF-8
 RUN locale-gen
 
-# Download PHP7
 ADD http://repos.zend.com/zend-server/early-access/php7/php-7.0-latest-DEB-x86_64.tar.gz /usr/local/php7
 
 RUN tar xzPf /usr/local/php7 \
