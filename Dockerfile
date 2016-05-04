@@ -1,9 +1,5 @@
-FROM debian:jessie
+FROM ubuntu:16.04
 
-# Let the container know that there is no tty
-ENV DEBIAN_FRONTEND noninteractive
-
-# Install necessary packages
 RUN apt-get update \
     && apt-get install --no-install-recommends -y \
         wget \
