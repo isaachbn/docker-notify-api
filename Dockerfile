@@ -29,7 +29,6 @@ ADD http://repos.zend.com/zend-server/early-access/php7/php-7.0-latest-DEB-x86_6
 RUN tar xzPf /usr/local/php7 \
     && echo 'export PATH="$PATH:/usr/local/php7/bin:/usr/local/php7/sbin"' >> /etc/bash.bashrc
 
-# Configure PHP-FPM, Nginx and Supervisor
 ADD conf/php-fpm.conf /etc/php7/php-fpm.conf
 ADD conf/www.conf /etc/php7/php-fpm.d/www.conf
 ADD ./conf/supervisord.conf /etc/supervisor/supervisord.conf
