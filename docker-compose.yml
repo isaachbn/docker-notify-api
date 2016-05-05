@@ -3,6 +3,7 @@ front:
   ports:
     - "8080:80"
     - "2222:22"
+    - "9000:9000"
   links:
     - mongo:mongo
     - redis:redis

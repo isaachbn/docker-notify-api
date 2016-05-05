@@ -81,6 +81,7 @@ RUN rm -fr /tmp/* /var/lib/apt/lists/* /var/tmp/* \
 
 WORKDIR /
 
-EXPOSE 80 22
-
-CMD ["/usr/bin/supervisord"]
+ENV NOTVISIBLE "in users profile"
+RUN echo "export VISIBLE=now" >> /etc/profile
+EXPOSE 80 22 9000
+ENTRYPOINT ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
