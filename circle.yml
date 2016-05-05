@@ -16,9 +16,8 @@ dependencies:
 
 test:
   override:
-    - sudo docker-compose run -d
+    - sudo docker-compose run web
     - sudo docker-compose stop
-    - sudo docker-compose rm --all
 
 deployment:
   staging:
