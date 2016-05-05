@@ -1,12 +1,16 @@
 machine:
   services:
     - docker
+
 dependencies:
-  override:
-    - docker info
-    - docker build -t circleci/elasticsearch .
+  pre:
+    - sudo pip install docker-compose
+  post:
+    - docker-compose up
+
 deployment:
   hub:
     branch: master
     commands:
-      - $DEPLOY
+      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - docker push circleci/elasticsearch
