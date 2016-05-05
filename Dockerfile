@@ -61,12 +61,6 @@ ADD ./conf/supervisord.conf /etc/supervisor/supervisord.conf
 ADD ./conf/nginx.conf /etc/nginx/sites-available/default
 
 ################################################################################
-# Install Composer
-################################################################################
-ADD https://getcomposer.org/composer.phar /usr/bin/composer
-RUN chmod +x /usr/bin/composer
-
-################################################################################
 # Set Off Daemon Nginx
 ################################################################################
 RUN echo "\ndaemon off;" >> /etc/nginx/nginx.conf
