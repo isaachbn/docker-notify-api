@@ -1,5 +1,6 @@
-front:
+web:
   build: .
+  dockerfile: Dockerfile
   ports:
     - "8080:80"
     - "2222:22"

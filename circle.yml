@@ -1,17 +1,29 @@
 machine:
   services:
     - docker
+  environment:
+     TAG: $CIRCLE_BRANCH-$CIRCLE_SHA1
+     DOCKER_REGISTRY: isaachbn/docker-nginx-php7-mongo-redis
+     BUILD: ${CIRCLE_BUILD_NUM}
+     CONTAINER1: $(tr [A-Z] [a-z] <<< ${CIRCLE_PROJECT_USERNAME:0:8})/$(tr [A-Z] [a-z] <<< ${CIRCLE_PROJECT_REPONAME:0:15}| tr -d '_-')
+     DOCKER_IMAGE: MY_ORGANIZATION/MY_IMAGE_NAME:$CIRCLE_BRANCH-$CIRCLE_SHA1
 
 dependencies:
-  pre:
+  override:
+    - sudo docker info
     - sudo curl -L -o /usr/bin/docker 'http://s3-external-1.amazonaws.com/circle-downloads/docker-1.9.1-circleci'; sudo chmod 0755 /usr/bin/docker; true
-  post:
-    - sudo docker-compose build
-    - sudo docker-compose up
+    - sudo sudo docker-compose build
+
+test:
+  override:
+    - sudo docker-compose run -d
+    - sudo docker-compose stop
+    - sudo docker-compose rm --all
 
 deployment:
-  hub:
-    branch: master
+  staging:
+    branch: [master, /automatic-.*/]
     commands:
-      - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
-      - docker push isaachbn/docker-nginx-php7-mongo-redis
+      - sudo docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASS
+      - sudo docker push ${DOCKER_REGISTRY}/${CONTAINER1}:build${BUILD}
+      - sudo docker push ${DOCKER_REGISTRY}/${CONTAINER1}:latest

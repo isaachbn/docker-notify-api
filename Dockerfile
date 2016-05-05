@@ -1,15 +1,7 @@
 ################################################################################
 # BASE IMAGE
 ################################################################################
-FROM ubuntu:16.04
-
-################################################################################
-# Set Locale
-################################################################################
-RUN sed -i "s/# pt_BR.UTF-8 UTF-8/pt_BR.UTF-8 UTF-8/" /etc/locale.gen
-ENV LANG       pt_BR.UTF-8
-ENV LC_ALL     pt_BR
-RUN locale-gen
+FROM ubuntu:15.04
 
 ################################################################################
 # ADD Key PHP-7
@@ -26,6 +18,7 @@ RUN apt-get update \
         lsb-release \
         nginx \
         locales \
+        git \
         openssh-server \
         supervisor \
         curl \
@@ -73,9 +66,6 @@ RUN rm -fr /tmp/* /var/lib/apt/lists/* /var/tmp/* \
     && apt-get autoclean \
     && apt-get clean
 
-WORKDIR /
 
-ENV NOTVISIBLE "in users profile"
-RUN echo "export VISIBLE=now" >> /etc/profile
 EXPOSE 80 22 9000
 ENTRYPOINT ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
