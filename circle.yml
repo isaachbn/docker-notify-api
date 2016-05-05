@@ -1,0 +1,12 @@
+machine:
+  services:
+    - docker
+dependencies:
+  override:
+    - docker info
+    - docker build -t circleci/elasticsearch .
+deployment:
+  hub:
+    branch: master
+    commands:
+      - $DEPLOY
