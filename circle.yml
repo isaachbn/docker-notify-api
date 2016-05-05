@@ -6,7 +6,7 @@ dependencies:
   pre:
     - sudo pip install docker-compose
   post:
-    - docker-compose up
+    - sudo docker-compose up
 
 deployment:
   hub:
