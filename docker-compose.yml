@@ -14,4 +14,4 @@ mongo:
 redis:
   image: redis
   ports:
-    - "6379:6379"
+    - "7979:6379"
