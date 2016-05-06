@@ -3,6 +3,8 @@
 ################################################################################
 FROM ubuntu:15.04
 
+ENV NOTIFY_API_VERSION master
+
 ################################################################################
 # ADD Key PHP-7
 ################################################################################
@@ -66,6 +68,7 @@ RUN rm -fr /tmp/* /var/lib/apt/lists/* /var/tmp/* \
     && apt-get autoclean \
     && apt-get clean
 
+RUN --version=${NOTIFY_API_VERSION}
 
 EXPOSE 80 22 9000
 ENTRYPOINT ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
