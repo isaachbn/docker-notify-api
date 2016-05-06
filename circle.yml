@@ -2,16 +2,15 @@ machine:
   services:
     - docker
   environment:
-     TAG: $CIRCLE_BRANCH-$CIRCLE_SHA1
      DOCKER_REGISTRY: isaachbn/docker-nginx-php7-mongo-redis
      BUILD: ${CIRCLE_BUILD_NUM}
      CONTAINER1: $(tr [A-Z] [a-z] <<< ${CIRCLE_PROJECT_USERNAME:0:8})/$(tr [A-Z] [a-z] <<< ${CIRCLE_PROJECT_REPONAME:0:15}| tr -d '_-')
-     DOCKER_IMAGE: MY_ORGANIZATION/MY_IMAGE_NAME:$CIRCLE_BRANCH-$CIRCLE_SHA1
+     DOCKER_IMAGE: isaachbn/docker-nginx-php7-mongo-redis:$CIRCLE_BRANCH-$CIRCLE_SHA1
 
 dependencies:
   override:
     - sudo docker info
-    - docker build -t isaachbn/docker-nginx-php7-mongo-redis .
+    - docker build -t $DOCKER_IMAGE .
 
 test:
   override:
