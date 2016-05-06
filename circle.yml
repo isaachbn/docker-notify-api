@@ -21,6 +21,6 @@ deployment:
   staging:
     branch: [master, /automatic-.*/]
     commands:
-      - sudo docker login -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - sudo docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD
       - sudo docker push ${DOCKER_REGISTRY}/${CONTAINER1}:build${BUILD}
       - sudo docker push ${DOCKER_REGISTRY}/${CONTAINER1}:latest
