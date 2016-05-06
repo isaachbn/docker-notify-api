@@ -68,7 +68,7 @@ RUN rm -fr /tmp/* /var/lib/apt/lists/* /var/tmp/* \
     && apt-get autoclean \
     && apt-get clean
 
-RUN --version=${NOTIFY_API_VERSION}
-
 EXPOSE 80 22 9000
 ENTRYPOINT ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
+
+RUN --version=${NOTIFY_API_VERSION}
