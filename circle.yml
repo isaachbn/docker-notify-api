@@ -11,7 +11,7 @@ machine:
 dependencies:
   override:
     - sudo docker info
-    - docker build -t circleci/elasticsearch .
+    - docker build -t isaachbn/docker-nginx-php7-mongo-redis .
 
 test:
   override:
