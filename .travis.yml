@@ -18,5 +18,5 @@ after_success:
   - export REPO=isaachbn/docker-notify-api
   - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
   - docker build .
-  - docker tag $REPO:$COMMIT $REPO:$TAG
+  - docker tag $REPO:$TAG
   - docker push $REPO
