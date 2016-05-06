@@ -3,23 +3,18 @@ machine:
     - docker
   environment:
      DOCKER_REGISTRY: isaachbn/docker-nginx-php7-mongo-redis
-     BUILD: ${CIRCLE_BUILD_NUM}
-     CONTAINER1: $(tr [A-Z] [a-z] <<< ${CIRCLE_PROJECT_USERNAME:0:8})/$(tr [A-Z] [a-z] <<< ${CIRCLE_PROJECT_REPONAME:0:15}| tr -d '_-')
-     DOCKER_IMAGE: isaachbn/docker-nginx-php7-mongo-redis:$CIRCLE_BRANCH-$CIRCLE_SHA1
 
-dependencies:
-  override:
-    - sudo docker info
-    - docker build -t $DOCKER_IMAGE .
+  dependencies:
+    override:
+      - sudo docker-compose build
 
-test:
-  override:
-    - sudo docker-compose run -d web
-    - sudo docker-compose stop
+  test:
+    override:
+      - sudo docker-compose run -d
 
-deployment:
-  staging:
-    branch: [master, /automatic-.*/]
-    commands:
-      - sudo docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD
-      - sudo docker push $DOCKER_REGISTRY
+  deployment:
+    staging:
+      branch: [master, /automatic-.*/]
+      commands:
+        - sudo docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD
+        - sudo docker push $DOCKER_REGISTRY
