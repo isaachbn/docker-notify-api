@@ -24,7 +24,6 @@ deployment:
   staging:
     branch: [master, /automatic-.*/]
     commands:
-      - test -n "$DOCKER_EMAIL" && test -n "$DOCKER_USER" && test -n "$DOCKER_PASSWORD"
-      - docker login --email "$DOCKER_EMAIL" --username "$DOCKER_USER" --password "$DOCKER_PASSWORD"
+      - sudo docker login --email $DOCKER_EMAIL --username $DOCKER_USER --password $DOCKER_PASSWORD
       - sudo docker push ${DOCKER_REGISTRY}/${CONTAINER1}:build${BUILD}
       - sudo docker push ${DOCKER_REGISTRY}/${CONTAINER1}:latest
