@@ -16,7 +16,7 @@ dependencies:
 
 test:
   override:
-    - sudo docker-compose run web
+    - sudo docker-compose run -d web
     - sudo docker-compose stop
 
 deployment:
