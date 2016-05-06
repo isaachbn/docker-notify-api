@@ -9,6 +9,7 @@ go:
   - '1.5'
 
 after_success:
+  - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build main.go
   - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD
   - export REPO=isaachbn/docker-notify-api
   - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
@@ -16,6 +17,3 @@ after_success:
   - docker tag $REPO:$COMMIT $REPO:$TAG
   - docker tag $REPO:$COMMIT $REPO:travis-$TRAVIS_BUILD_NUMBER
   - docker push $REPO
-
-notifications:
-  email: false
