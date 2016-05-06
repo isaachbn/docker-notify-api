@@ -10,11 +10,11 @@ dependencies:
 
 test:
   override:
-    - sudo docker-compose run -d
+    - sudo docker-compose run -d web
 
 deployment:
   staging:
     branch: [master, /automatic-.*/]
     commands:
       - sudo docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD
-      - sudo docker push $DOCKER_REGISTRY
+      - sudo docker push $DOCKER_REGISTRY:$DOCKER_TAG
