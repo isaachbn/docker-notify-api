@@ -4,17 +4,17 @@ machine:
   environment:
      DOCKER_REGISTRY: isaachbn/docker-nginx-php7-mongo-redis
 
-  dependencies:
-    override:
-      - sudo docker-compose build
+dependencies:
+  override:
+    - sudo docker-compose build
 
-  test:
-    override:
-      - sudo docker-compose run -d
+test:
+  override:
+    - sudo docker-compose run -d
 
-  deployment:
-    staging:
-      branch: [master, /automatic-.*/]
-      commands:
-        - sudo docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD
-        - sudo docker push $DOCKER_REGISTRY
+deployment:
+  staging:
+    branch: [master, /automatic-.*/]
+    commands:
+      - sudo docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD
+      - sudo docker push $DOCKER_REGISTRY
