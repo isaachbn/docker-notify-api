@@ -3,6 +3,11 @@ sudo: required
 services:
   - docker
 
+language: go
+
+go:
+  - '1.5'
+
 after_success:
   - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD
   - export REPO=isaachbn/docker-notify-api
