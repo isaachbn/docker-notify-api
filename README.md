@@ -1,1 +1,1 @@
-# Image for PHP7 + Nginx
+# Notify API: Notification Manager to Users
