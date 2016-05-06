@@ -1,5 +1,5 @@
 build:
-	docker build -t isaachbn/docker-notify-api:master master
+	docker build -t isaachbn/docker-notify-api:base
 
 version:
 	@docker run isaachbn/docker-notify-api --version --no-ansi
