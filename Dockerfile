@@ -76,8 +76,8 @@ RUN rm -fr /tmp/* /var/lib/apt/lists/* /var/tmp/* \
     && apt-get autoclean \
     && apt-get clean
 
-RUN cd /var/run
-RUN chown -R root:root php/
+COPY ./docker-entrypoint.sh /
+ENTRYPOINT ["/docker-entrypoint.sh"]
 
 EXPOSE 80 22 9000
 ENTRYPOINT ["/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf"]
