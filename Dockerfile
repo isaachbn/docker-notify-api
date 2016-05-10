@@ -1,7 +1,7 @@
 ################################################################################
 # BASE IMAGE
 ################################################################################
-FROM ubuntu:15.04
+FROM nginx
 
 ENV NOTIFY_API_VERSION master
 
@@ -25,7 +25,6 @@ RUN echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen
 RUN apt-get update \
     && apt-get install -my \
         lsb-release \
-        nginx \
         locales \
         git \
         openssh-server \
