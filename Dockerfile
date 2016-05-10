@@ -24,6 +24,7 @@ RUN echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen
 ################################################################################
 RUN apt-get update \
     && apt-get install -my \
+        apt-key \
         lsb-release \
         locales \
         git \
