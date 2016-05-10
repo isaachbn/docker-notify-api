@@ -3,7 +3,7 @@
 > Dockerized PHP development stack: Nginx, MongoDB, PHP-7.0-FPM, PHP-7.0 and Redis
 
 [![Build Status](https://travis-ci.org/isaachbn/docker-notify-api.svg)](https://travis-ci.org/isaachbn/docker-notify-api)
-[![Docker Pulls](https://img.shields.io/docker/pulls/isaachbn/docker-notify-api.svg?maxAge=2592000)](https://img.shields.io/docker/pulls/isaachbn/docker-notify-api)
+[![Docker Pulls](https://img.shields.io/docker/pulls/isaachbn/docker-notify-api.svg?maxAge=2592000)](https://hub.docker.com/r/isaachbn/docker-notify-api)
 
 ## What's inside
 
