@@ -21,7 +21,7 @@ after_success:
   - CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build main.go
   - docker login -e $DOCKER_EMAIL -u $DOCKER_USER -p $DOCKER_PASSWORD
   - export REPO=isaachbn/docker-notify-api
-  - export TAG=`echo "latest";`
+  - export TAG=`if [ "$TRAVIS_BRANCH" == "master" ]; then echo "latest"; else echo $TRAVIS_BRANCH ; fi`
   - docker build -f Dockerfile -t $REPO:$COMMIT .
-  - docker tag $REPO:$COMMIT $REPO:$TAG
+  - docker tag $REPO:$TAG
   - docker push $REPO:$TAG
