@@ -8,6 +8,11 @@ language: go
 go:
   - '1.5'
 
+branches:
+  only:
+    - master
+    - /^deploy-.*$/
+
 env:
   global:
     - COMMIT=${TRAVIS_COMMIT::8}
